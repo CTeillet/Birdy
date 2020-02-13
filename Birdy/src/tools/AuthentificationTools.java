@@ -1,13 +1,17 @@
 package tools;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import bd.Database;
+
 public class AuthentificationTools {
 
-	public AuthentificationTools() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public static boolean userExists(String login) {
+	public static boolean userExists(String login) throws SQLException {
 		// TODO Auto-generated method stub
+		Statement stmt = Database.getMySQLConnection().createStatement();
+		
 		return false;
 	}
 

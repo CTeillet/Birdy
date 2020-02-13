@@ -14,12 +14,13 @@ public class TestBD {
 				Connection conn = ds.getConnection();
 				if(conn != null) {
 					Statement stmt = conn.createStatement();
-					ResultSet rst = stmt.executeQuery("select ...");
+					ResultSet rst = stmt.executeQuery("select * from Utilisateur");
 					if(rst.next()) {
-						}
+						String s = "";
+					}
 					conn.close();
 				}
-			} catch(Exception e) { e.printStackTrace(); }
-		}
+			}
+		} catch(Exception e) { e.printStackTrace(); }
 	}
 }

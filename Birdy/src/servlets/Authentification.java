@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,10 @@ public class Authentification extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String login = req.getParameter("login");
+		String mdp = req.getParameter("password");
+		Writer pt = resp.getWriter(); 
+		pt.println(services.Authentification.login(login, mdp));
+		
 	}
 }
