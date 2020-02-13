@@ -31,7 +31,8 @@ public class User{
 		return null;
 	}
 	
-	public deleteUser(String id) {
+	public static JSONObject deleteUser(String id) {
 		
+		return null;
 	}
 }

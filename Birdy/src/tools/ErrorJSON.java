@@ -17,7 +17,7 @@ public class ErrorJSON {
 	
 	public static JSONObject serviceAccepted() {
 		try {	
-			JSONObject res = new JSONObject().put("etat","réussi");
+			JSONObject res = new JSONObject().put("etat","reussi");
 			return res;
 		} catch (JSONException e) {
 			return null;
