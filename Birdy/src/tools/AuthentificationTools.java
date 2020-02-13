@@ -2,12 +2,9 @@ package tools;
 
 public class AuthentificationTools {
 
-	public AuthentificationTools() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static boolean userExists(String login) {
-		// TODO Auto-generated method stub
+		StringBuilder res = new StringBuilder();
+		
 		return false;
 	}
 
