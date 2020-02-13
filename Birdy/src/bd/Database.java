@@ -18,9 +18,11 @@ public class Database {
 	
 	private DataSource dataSource;
 	private static Database database = null;
+	
+	
 	public Database(String ressource_name) throws SQLException{
 		try {
-			// construire l'objet dataSource � partir du fichier de context
+			// construire l'objet dataSource a partir du fichier de context
 			dataSource = (DataSource) new InitialContext().lookup("java:comp/env/"+ressource_name);
 		}catch (NamingException e) {
 			throw new SQLException(ressource_name+" unreachable :"+e.getMessage());
@@ -40,7 +42,7 @@ public class Database {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// on cr�er donc une nouvelle connexion
+			// on creer donc une nouvelle connexion
 			return DriverManager.getConnection("jdbc:mysql://"+DBStatic.mysql_host+"/"+DBStatic.mysql_db, DBStatic.mysql_user, DBStatic.mysql_password);
 			/* on notera toutefois que le port est n�c�ssaire si la bd n'est pas interfacer au port par d�faut.
 			 *  Ainsi jdbc:mysql://"+DBStatic.mysql_host+":"+DBStatic.mysql_port+"/"+DBStatic.mysql_bd

@@ -4,17 +4,17 @@ import org.json.JSONObject;
 
 public class User{
 	
-	public static JSONObject createUser(String id, String mdp, String mail) {
+	public static JSONObject createUser(String id, String mdp, String mail, String nom, String prenom, String dateNaissance) {
 		if(id==null) {
 			return tools.ErrorJSON.serviceRefused("Identifiant non défini", -1);
 		}
 		if(mdp==null) {
-			return tools.ErrorJSON.serviceRefused("Mot  non défini", -1);
+			return tools.ErrorJSON.serviceRefused("Mot de passe  non défini", -1);
 		}
 		if(mail==null) {
 			return tools.ErrorJSON.serviceRefused("Mail non défini", -1);
 		}
-		if(tools.InteractionBD.createUser(id, mdp, mail)) {
+		if(bd.InteractionBD.createUser(id, mdp, mail, dateNaissance, dateNaissance, dateNaissance)) {
 			return tools.ErrorJSON.serviceAccepted();
 		}else {
 			return tools.ErrorJSON.serviceRefused("Probleme de SQL", 1000);
