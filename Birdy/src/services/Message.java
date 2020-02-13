@@ -7,7 +7,7 @@ public class Message {
 		return null;
 	}
 	
-	public static removeMessage(String idU, String idM) {
+	public static JSONObject removeMessage(String idU, String idM) {
 		return null;
 	}
 }

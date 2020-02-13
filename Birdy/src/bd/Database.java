@@ -12,14 +12,14 @@ import com.mongodb.client.MongoClient;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-// class en charge de la connexion aux base de donnÃ©es
+// class en charge de la connexion aux base de données
 public class Database {
 	
 	private DataSource dataSource;
 	private static Database database = null;
 	public Database(String ressource_name) throws SQLException{
 		try {
-			// construire l'objet dataSource Ã  partir du fichier de context
+			// construire l'objet dataSource à partir du fichier de context
 			dataSource = (DataSource) new InitialContext().lookup("java:comp/env/"+ressource_name);
 		}catch (NamingException e) {
 			throw new SQLException(ressource_name+" unreachable :"+e.getMessage());
@@ -39,15 +39,15 @@ public class Database {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// on crÃ©er donc une nouvelle connexion
+			// on créer donc une nouvelle connexion
 			return DriverManager.getConnection("jdbc:mysql://"+DBStatic.mysql_host+"/"+DBStatic.mysql_db, DBStatic.mysql_user, DBStatic.mysql_password);
-			/* on notera toutefois que le port est nÃ©cÃ©ssaire si la bd n'est pas interfacer au port par dÃ©faut.
+			/* on notera toutefois que le port est nécéssaire si la bd n'est pas interfacer au port par défaut.
 			 *  Ainsi jdbc:mysql://"+DBStatic.mysql_host+":"+DBStatic.mysql_port+"/"+DBStatic.mysql_bd
 			 */
 		}
 		// si on utilise le pooling
 		else {
-			// si c'est la toute premiÃ¨re connexion
+			// si c'est la toute première connexion
 			if(database == null) {
 				/* on creer l'objet Database en indiquant le nom de la 
 				 * ressource dans le fichier de context
