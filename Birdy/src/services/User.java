@@ -2,19 +2,22 @@ package services;
 
 import org.json.JSONObject;
 
+import tools.UserTools;
+
 public class User{
 	
 	public static JSONObject createUser(String id, String mdp, String mail, String nom, String prenom, String dateNaissance) {
 		if(id==null) {
-			return tools.ErrorJSON.serviceRefused("Identifiant non défini", -1);
+			return tools.ErrorJSON.serviceRefused("Identifiant non defini", -1);
 		}
 		if(mdp==null) {
-			return tools.ErrorJSON.serviceRefused("Mot de passe  non défini", -1);
+			return tools.ErrorJSON.serviceRefused("Mot de passe  non defini", -1);
 		}
 		if(mail==null) {
-			return tools.ErrorJSON.serviceRefused("Mail non défini", -1);
+			return tools.ErrorJSON.serviceRefused("Mail non defini", -1);
 		}
-		if(bd.InteractionBD.createUser(id, mdp, mail, dateNaissance, dateNaissance, dateNaissance)) {
+		String req = tools.UserTools.createUsers(id, mdp, mail, nom, prenom, dateNaissance);
+		if(bd.InteractionBD.execute(req)) {
 			return tools.ErrorJSON.serviceAccepted();
 		}else {
 			return tools.ErrorJSON.serviceRefused("Probleme de SQL", 1000);
@@ -22,17 +25,22 @@ public class User{
 	}
 	
 	public static JSONObject getUser(String id) {
-		
-		return null;
+		if (id!=null) {
+			String req = UserTools.getUser(id);
+			bd.InteractionBD.execute(req);
+			return tools.ErrorJSON.serviceAccepted();
+		}
+		return tools.ErrorJSON.serviceRefused("Probleme de SQL", 1000);
 	}
 	
 	public static JSONObject getUserList() {
-		
+		String req = UserTools.getUsers();
+		bd.InteractionBD.execute(req);
 		return null;
 	}
 	
 	public static JSONObject deleteUser(String id) {
-		
+		String req = UserTools.deleteUser(id);
 		return null;
 	}
 }
