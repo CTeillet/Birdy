@@ -1,26 +1,31 @@
 package tests;
 
-import javax.naming.*;
-import javax.sql.*;
+import bd.Database;
 import java.sql.*;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class TestBD {
-	public void init() {
-		try{
-			Context  ctx = new InitialContext();
-			if(ctx == null ) throw new Exception("Boom");
-			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/db");
-			if (ds != null) {
-				Connection conn = ds.getConnection();
-				if(conn != null) {
-					Statement stmt = conn.createStatement();
-					ResultSet rst = stmt.executeQuery("select * from Utilisateur");
-					if(rst.next()) {
-						String s = "";
-					}
-					conn.close();
-				}
-			}
-		} catch(Exception e) { e.printStackTrace(); }
+	
+
+	public static JSONObject testBD() {
+		try {
+			Connection conn = Database.getMySQLConnection();
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("Select * from test");
+			res.next();
+			conn.close();
+			return new JSONObject().put("val", res.getInt("ty"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }
