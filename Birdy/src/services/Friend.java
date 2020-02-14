@@ -4,6 +4,10 @@ import org.json.JSONObject;
 
 public class Friend {
 	public static JSONObject getFriendList(String id) {
+		if(id==null) {
+			return tools.ErrorJSON.serviceRefused("Identifiant non defini", -1);
+		}
+		String req = tools.FriendTools.getFriendList(id);
 		return null;
 	}
 	

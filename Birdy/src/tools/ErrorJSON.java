@@ -1,5 +1,7 @@
 package tools;
 
+import java.util.Collection;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,9 +26,13 @@ public class ErrorJSON {
 		}
 	}
 	
-	public static JSONObject serviceAccepted(String cle) {
-		
-		return null;
+	public static JSONObject serviceAccepted(String cle, Collection valeur) {
+		try {	
+			JSONObject res = new JSONObject().put("etat","reussi").put(cle, valeur);
+			return res;
+		} catch (JSONException e) {
+			return null;
+		}
 	}
 
 }
