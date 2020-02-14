@@ -12,7 +12,6 @@ public class Authentification {
 		if(login==null || password==null) 
 			return ErrorJSON.serviceRefused("Wrong Arguments", 0);
 		
-		
 		try {
 			//Verifie que l'utilisateur existe sinon ERROR 1
 			boolean is_user = AuthentificationTools.userExists(login);

@@ -15,6 +15,7 @@ public class TestBD {
 			Statement s = conn.createStatement();
 			ResultSet res = s.executeQuery("Select * from test");
 			res.next();
+			s.close();
 			conn.close();
 			return new JSONObject().put("val", res.getInt("ty"));
 		} catch (SQLException e) {

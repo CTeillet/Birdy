@@ -9,8 +9,8 @@ public class TestServices {
 		System.out.println(User.createUser("Co", "bonjour", "azertyu@sdfgh.fr", null, null, null));
 		System.out.println(User.createUser(null, "bonjour", "azertyu@sdfgh.fr", null, null, null));
 		System.out.println(User.createUser("Co", null, "azertyu@sdfgh.fr", null, null, null));
-		System.out.println(User.createUser("Co", "bonjour", null, null, null, null));
-		
+		System.out.println(User.createUser("Nono", "bonjour", "azertyuio", "Co", null, null));
+		System.out.println(User.getUser("Nono"));
 		
 		
 		
