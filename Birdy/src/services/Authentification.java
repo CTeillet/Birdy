@@ -3,6 +3,7 @@ package services;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import bd.BDException;
 import tools.AuthentificationTools;
 import tools.ErrorJSON;
 

@@ -24,7 +24,7 @@ public class UserTools {
 	
 	public static String getUser(String id) {
 		StringBuilder res = new StringBuilder();
-		res.append("Select * From Utilisateur Where Utilisateur.identifiant='").append("id").append("';");
+		res.append("Select * From Utilisateur Where Utilisateur.identifiant='").append(id).append("';");
 		return res.toString();
 	}
 

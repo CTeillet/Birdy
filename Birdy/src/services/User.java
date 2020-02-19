@@ -27,8 +27,7 @@ public class User{
 	public static JSONObject getUser(String id) {
 		if (id!=null) {
 			String req = UserTools.getUser(id);
-			bd.InteractionBD.executeQuery(req);
-			return tools.ErrorJSON.serviceAccepted();
+			return tools.ErrorJSON.serviceAccepted("res", bd.InteractionBD.executeQuery(req));
 		}
 		return tools.ErrorJSON.serviceRefused("Probleme de SQL", 1000);
 	}
