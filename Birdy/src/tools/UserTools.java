@@ -36,7 +36,7 @@ public class UserTools {
 
 	public static String deleteUser(String id) {
 		StringBuilder res = new StringBuilder();
-		res.append("Delete From Utilisateur Where Utilisateur.id='").append(id).append("';");
+		res.append("Delete From Utilisateur Where Utilisateur.identifiant='").append(id).append("';");
 		return res.toString();
 	}
 

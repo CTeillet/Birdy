@@ -8,7 +8,7 @@ import java.sql.Statement;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import tools.ErrorJSON;
+import tools.JSONTools;
 
 public class InteractionBD {
 
@@ -18,11 +18,10 @@ public class InteractionBD {
 		Statement s;
 		ResultSet res;
 		try {
-			System.out.println(req);
 			conn = Database.getMySQLConnection();
 			s = conn.createStatement();
 			res = s.executeQuery(req);
-			JSONObject retour = ErrorJSON.resulSet2JSON(res);
+			JSONObject retour = JSONTools.resulSet2JSON(res);
 			res.close();
 			s.close();
 			conn.close();

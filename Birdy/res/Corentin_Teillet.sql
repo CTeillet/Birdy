@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 14 Février 2020 à 17:43
--- Version du serveur :  5.7.22
--- Version de PHP :  7.0.33-0+deb9u6
+-- Généré le :  Mer 19 Février 2020 à 21:18
+-- Version du serveur :  5.7.29-0ubuntu0.18.04.1
+-- Version de PHP :  7.2.24-0ubuntu0.18.04.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -71,7 +71,6 @@ CREATE TABLE `Utilisateur` (
 
 INSERT INTO `Utilisateur` (`Nom`, `Prenom`, `DateNaissance`, `Mail`, `Password`, `Identifiant`) VALUES
 (NULL, NULL, NULL, 'azertyu@sdfgh.fr', 'bonjour', 'Co'),
-('Teillet', 'Corentin', NULL, 'teillet.corentin@neuf.fr', 'coco', 'nono'),
 ('Co', NULL, NULL, 'azertyuio', 'bonjour', 'Nono9196'),
 ('Jean', 'Pierre', NULL, 'jean.pierre@gmail.com', 'jj', 'pp');
 
@@ -90,7 +89,8 @@ ALTER TABLE `EnLigne`
 --
 ALTER TABLE `Friend`
   ADD PRIMARY KEY (`Utilisateur1`,`Utilisateur2`),
-  ADD KEY `FK_Utilisateur2` (`Utilisateur2`);
+  ADD KEY `FK_Utilisateur2` (`Utilisateur2`),
+  ADD KEY `Utilisateur1` (`Utilisateur1`);
 
 --
 -- Index pour la table `Utilisateur`
@@ -107,13 +107,6 @@ ALTER TABLE `Utilisateur`
 --
 ALTER TABLE `EnLigne`
   ADD CONSTRAINT `FK_ID` FOREIGN KEY (`Id`) REFERENCES `Utilisateur` (`Identifiant`);
-
---
--- Contraintes pour la table `Friend`
---
-ALTER TABLE `Friend`
-  ADD CONSTRAINT `FK_Utilisateur1` FOREIGN KEY (`Utilisateur1`) REFERENCES `Utilisateur` (`Identifiant`),
-  ADD CONSTRAINT `FK_Utilisateur2` FOREIGN KEY (`Utilisateur2`) REFERENCES `Utilisateur` (`Identifiant`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

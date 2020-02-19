@@ -3,12 +3,14 @@ package tools;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ErrorJSON {
+public class JSONTools {
 
 	public static JSONObject serviceRefused(String message, int codeErreur) {
 		try {	
@@ -42,14 +44,19 @@ public class ErrorJSON {
 		JSONObject js = new JSONObject();
 		ResultSetMetaData md = rs.getMetaData();
 		int nbCol = md.getColumnCount();
-		int i=0;
+		System.out.println(nbCol);
+		List<String> column = new ArrayList<>();
+		for(int i=1; i<=nbCol; i++) {
+			column.add(md.getColumnLabel(i));
+		}
+		int k=0;
 		while(rs.next()) {
 			JSONObject tab = new JSONObject();
 			for (int j = 0; j < nbCol; j++) {
-				tab.put(md.getColumnLabel(j), rs.getString(j));
+				tab.put(column.get(j), rs.getString(column.get(j)));
 			}
-			js.put(i+"", tab);
-			i++;
+			js.put(k+"", tab);
+			k++;
 		}
 		return js;
 	}
