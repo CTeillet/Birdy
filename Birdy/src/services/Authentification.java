@@ -29,11 +29,8 @@ public class Authentification {
 			//Insere une nouvelle session dans la base de données
 			String key = AuthentificationTools.insertSession(id_user, false);
 			retour .put("key", key);
-			
 		}catch(JSONException e) {
 			return JSONTools.serviceRefused("JSON Problem" + e.getMessage(), 100);
-		}catch(BDException e) {
-			return ( JSONTools.serviceRefused("Problem while generating session key",1000)); 
 		}catch(Exception e) {
 			return ( JSONTools.serviceRefused("Problem ...",10000));
 		}

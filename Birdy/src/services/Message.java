@@ -10,4 +10,5 @@ public class Message {
 	public static JSONObject removeMessage(String idU, String idM) {
 		return null;
 	}
+	
 }

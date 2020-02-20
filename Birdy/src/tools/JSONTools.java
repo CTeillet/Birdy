@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.json.JSONException;
@@ -40,11 +39,19 @@ public class JSONTools {
 		}
 	}
 	
+	public static JSONObject serviceAccepted(String cle, int s) {
+		try {	
+			JSONObject res = new JSONObject().put("etat","reussi").put(cle, s);
+			return res;
+		} catch (JSONException e) {
+			return null;
+		}
+	}
+	
 	public static JSONObject resulSet2JSON(ResultSet rs) throws SQLException, JSONException {
 		JSONObject js = new JSONObject();
 		ResultSetMetaData md = rs.getMetaData();
 		int nbCol = md.getColumnCount();
-		System.out.println(nbCol);
 		List<String> column = new ArrayList<>();
 		for(int i=1; i<=nbCol; i++) {
 			column.add(md.getColumnLabel(i));
@@ -60,5 +67,4 @@ public class JSONTools {
 		}
 		return js;
 	}
-
 }
