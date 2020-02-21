@@ -24,25 +24,25 @@
 	</servlet>
 	<servlet-mapping> 
 		<servlet-name>Test</servlet-name> 
-		<url-pattern>/Test</url-pattern> 
+		<url-pattern>/Test/*</url-pattern> 
 	</servlet-mapping>
 	
 	
 	<servlet-mapping> 
 		<servlet-name>Authentification</servlet-name> 
-		<url-pattern>/Authentification</url-pattern> 
+		<url-pattern>/Authentification/*</url-pattern> 
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Friend</servlet-name>
-		<url-pattern>/Friend</url-pattern>
+		<url-pattern>/Friend/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping> 
 		<servlet-name>Message</servlet-name> 
-		<url-pattern>/Message</url-pattern> 
+		<url-pattern>/Message/*</url-pattern> 
 	</servlet-mapping>
 		<servlet-mapping> 
 		<servlet-name>User</servlet-name> 
-		<url-pattern>/User</url-pattern> 
+		<url-pattern>/User/*</url-pattern> 
 	</servlet-mapping>
 	
 	<resource-ref>
