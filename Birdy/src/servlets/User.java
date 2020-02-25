@@ -12,6 +12,11 @@ import org.json.JSONObject;
 import tools.JSONTools;
 
 public class User extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1662029623929018509L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String param = req.getPathInfo();

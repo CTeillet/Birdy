@@ -20,4 +20,16 @@ public class FriendTools {
 		return res.toString();
 	}
 
+	public static String getFriend(String id1, String id2) {
+		StringBuilder res = new StringBuilder();
+		res.append("Select * Where Friends.utilisateur1='").append(id1).append("' and Friends.utilisateur2='").append(id2).append("';");
+		return res.toString();
+	}
+
+	public static String removeAllFriend(String id1) {
+		StringBuilder res = new StringBuilder();
+		res.append("Delete from Friend Where Friend.Utilisateur1='").append(id1).append("';");
+		return res.toString();
+	}
+
 }
