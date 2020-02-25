@@ -1,13 +1,14 @@
 package tests;
 
 import services.Authentification;
+import services.Message;
 import services.User;
 import tools.AuthentificationTools;
 
 public class TestServices {
 
 	public static void main(String[] args) {
-		/*//Création d'un Utilisateur
+		//Création d'un Utilisateur
 		//createUser("Id", "MDP", "MAIL", Prenom, nom, ddateN));
 		System.out.println(User.createUser("Co", "bonjour", "azertyu@sdfgh.fr", null, null, null));
 		System.out.println(User.createUser(null, "bonjour", "azertyu@sdfgh.fr", null, null, null));
@@ -19,9 +20,12 @@ public class TestServices {
 		//System.out.println(User.getUserList());
 		System.out.println(User.deleteUser("nono"));	
 		System.out.println(User.getUserList());
-		System.out.println(AuthentificationTools.generateKey());*/
+		//System.out.println(AuthentificationTools.generateKey());
 		
-		System.out.println(User.getUser("nono"));
+		System.out.println(services.Friend.getFriendList("nono"));
+		//System.out.println(User.getUser("nono"));
+		
+		System.out.println(Message.createMessage("Nono9196", "Bonjour"));
 	}
 
 }

@@ -20,7 +20,13 @@ public class User extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String param = req.getPathInfo();
-		String[] sep = param.split("/");
+		String[] sep;
+		if(param==null) {
+			sep = null;
+		}else {
+			sep = param.split("/");
+		}
+		
 		JSONObject retour = null;
 		if(sep.length == 0 || sep==null) { 
 			retour = services.User.getUserList();
