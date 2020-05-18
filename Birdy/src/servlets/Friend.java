@@ -44,7 +44,7 @@ public class Friend extends HttpServlet {
 		String id2 = req.getParameter("id2");
 		JSONObject retour = null;
 		if(id1 == null) { 
-			retour = JSONTools.serviceRefused("Pas d'argument", -1)
+			retour = JSONTools.serviceRefused("Pas d'argument", -1);
 			retour = services.Friend.removeAllFriend(id1);
 		}else {
 			retour = services.Friend.removeFriend(id1,id2);
@@ -55,11 +55,11 @@ public class Friend extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String param = req.getPathInfo();
-		String[] sep = param.split("/");
+		String id1 = req.getParameter("id1");
+		String id2 = req.getParameter("id2");
 		JSONObject retour = null;
-		if(sep.length == 2) { 
-			retour = services.Friend.addFriend(sep[0], sep[1]);
+		if(id1 != null && id2 != null) { 
+			retour = services.Friend.addFriend(id1, id2);
 		}
 		resp.setContentType("application/json");
 		resp.getWriter().print(retour);

@@ -7,8 +7,7 @@ import org.bson.conversions.Bson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mongodb.Cursor;
-import com.mongodb.DBCursor;
+
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
