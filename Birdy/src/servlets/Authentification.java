@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
+import tools.JSONTools;
+
 public class Authentification extends HttpServlet {
 
 	/**
@@ -16,8 +20,18 @@ public class Authentification extends HttpServlet {
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+		String param = req.getPathInfo();
+		String[] sep = param.split("/");
+		JSONObject retour = null;
+		
+		if(sep.length == 2) {
+			retour = services.Authentification.logout(sep[0], sep[1]);
+		}else {
+			retour = JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(retour);
 	}
 	
 	@Override

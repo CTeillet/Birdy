@@ -12,7 +12,13 @@ public class Friend {
 			return JSONTools.serviceRefused("Identifiant non defini", -1);
 		}
 		String req = FriendTools.getFriendList(id);
-		return JSONTools.serviceAccepted("res", InteractionBD.executeQuery(req));
+		JSONObject res =  InteractionBD.executeQuery(req);
+		if(res.length()==0) {
+			return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
+		}else {
+			return JSONTools.serviceAccepted("res",res);
+		}
+		
 	}
 	
 	public static JSONObject getFriend(String id1, String id2) {
@@ -20,15 +26,27 @@ public class Friend {
 			return JSONTools.serviceRefused("Identifiant non defini", -1);
 		}
 		String req = FriendTools.getFriend(id1, id2);
-		return JSONTools.serviceAccepted("res", InteractionBD.executeQuery(req));
+		JSONObject res = InteractionBD.executeQuery(req);
+		if(res.length()!=0) {
+			return JSONTools.serviceAccepted();
+		}else {
+			return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
+		}
+		
 	}
 	
 	public static JSONObject addFriend(String id1, String id2) {
 		if(id1==null || id2==null || id1==id2) {
-			return tools.JSONTools.serviceRefused("Identifiant non defini ou erreur", -1);
+			return tools.JSONTools.serviceRefused("Identifiant non defini ou identique", -1);
 		}else {
 			String req = FriendTools.addFriend(id1, id2);
-			return JSONTools.serviceAccepted("res", InteractionBD.executeUpdate(req));
+			//System.out.println(req);
+			int res  = InteractionBD.executeUpdate(req);
+			if (res == 0) {
+				return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
+			}else {
+				return JSONTools.serviceAccepted();
+			}
 		}
 	}
 	
@@ -37,9 +55,13 @@ public class Friend {
 			return JSONTools.serviceRefused("Identifiant non defini", -1);
 		}else {
 			String req = FriendTools.removeFriend(id1, id2);
-			return JSONTools.serviceAccepted("res", InteractionBD.executeUpdate(req));
+			int res = InteractionBD.executeUpdate(req);
+			if (res == 0) {
+				return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
+			}else {
+				return JSONTools.serviceAccepted();
+			}	
 		}
-		//return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
 	}
 	
 	public static JSONObject removeAllFriend(String id1) {
@@ -47,8 +69,12 @@ public class Friend {
 			return JSONTools.serviceRefused("Identifiant non defini", -1);
 		}else {
 			String req = FriendTools.removeAllFriend(id1);
-			return JSONTools.serviceAccepted("res", InteractionBD.executeUpdate(req));
+			int res = InteractionBD.executeUpdate(req);
+			if (res == 0) {
+				return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
+			}else {
+				return JSONTools.serviceAccepted();
+			}	
 		}
-		//return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
 	}
 }

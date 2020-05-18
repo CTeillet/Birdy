@@ -4,5 +4,5 @@
 	maxActive="10" maxIdle="30"  maxWait="10000"
 	url="jdbc:mysql://localhost/Corentin_Teillet"
 	driverClassName="com.mysql.cj.jdbc.Driver"
-	username="root" password="root" />
+	username="root" password="" />
 </Context>

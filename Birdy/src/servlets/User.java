@@ -41,15 +41,12 @@ public class User extends HttpServlet {
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String param = req.getPathInfo();
-		String[] sep = param.split("/");
-		JSONObject retour = null;
-		if(sep.length == 0 || sep==null) { 
+		String id = req.getParameter("id");
+		JSONObject retour;
+		if (id == null) {
 			retour = JSONTools.serviceRefused("Pas d'argument", -1);
 		}else {
-			if(sep.length == 2) {
-				retour = services.User.deleteUser(sep[1]);
-			}
+			retour = services.User.deleteUser(id);
 		}
 		resp.setContentType("application/json");
 		resp.getWriter().print(retour);

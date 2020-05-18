@@ -9,7 +9,7 @@ import org.json.JSONObject;
 public class TestBD {
 	
 
-	public static JSONObject testBD() {
+	public static void main(String[] args) {
 		try {
 			Connection conn = Database.getMySQLConnection();
 			Statement s = conn.createStatement();
@@ -17,15 +17,16 @@ public class TestBD {
 			res.next();
 			s.close();
 			conn.close();
-			return new JSONObject().put("val", res.getInt("ty"));
+			//(new JSONObject()).put("val", res.getInt("ty"));
+			System.out.println((new JSONObject()).put("val", res.getInt("ty")).toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			//return null;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			//return null;
 		}
 		
 	}

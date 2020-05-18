@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import tools.JSONTools;
+
 public class Friend extends HttpServlet {
 	/**
 	 * 
@@ -38,15 +40,14 @@ public class Friend extends HttpServlet {
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String param = req.getPathInfo();
-		String[] sep = param.split("/");
+		String id1 = req.getParameter("id1");
+		String id2 = req.getParameter("id2");
 		JSONObject retour = null;
-		if(sep.length == 1) { 
-			retour = services.Friend.removeAllFriend(sep[0]);
+		if(id1 == null) { 
+			retour = JSONTools.serviceRefused("Pas d'argument", -1)
+			retour = services.Friend.removeAllFriend(id1);
 		}else {
-			if(sep.length == 2) {
-				retour = services.Friend.removeFriend(sep[0], sep[1]);
-			}
+			retour = services.Friend.removeFriend(id1,id2);
 		}
 		resp.setContentType("application/json");
 		resp.getWriter().print(retour);

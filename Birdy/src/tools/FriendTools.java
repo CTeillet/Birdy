@@ -10,9 +10,9 @@ public class FriendTools {
 
 	public static String addFriend(String id1, String id2) {
 		StringBuilder res = new StringBuilder();
-		res.append("Insert into Friends(utilisateur1, utilisateur2) values ('").append(id1).append("', '").append(id2).append("');");
+		res.append("Insert into Friend(utilisateur1, utilisateur2) values ('").append(id1).append("', '").append(id2).append("');");
 		return res.toString();
-	}
+	} 
 
 	public static String removeFriend(String id1, String id2) {
 		StringBuilder res = new StringBuilder();
