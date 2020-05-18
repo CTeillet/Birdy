@@ -45,9 +45,12 @@ public class Friend extends HttpServlet {
 		JSONObject retour = null;
 		if(id1 == null) { 
 			retour = JSONTools.serviceRefused("Pas d'argument", -1);
-			retour = services.Friend.removeAllFriend(id1);
 		}else {
-			retour = services.Friend.removeFriend(id1,id2);
+			if(id2!=null) {
+				retour = services.Friend.removeFriend(id1,id2);
+			}else {
+				retour = services.Friend.removeAllFriend(id1);
+			}	
 		}
 		resp.setContentType("application/json");
 		resp.getWriter().print(retour);
