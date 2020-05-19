@@ -68,8 +68,8 @@ public class Authentification {
 	}
 	
 	public static JSONObject isLogged(String id, String key) {
-		if(id==null || key==null) {
-			return JSONTools.serviceRefused("Identifiant ou cle non defini", -1);
+		if(key==null) {
+			return JSONTools.serviceRefused("Cle non defini", -1);
 		}else {
 			String req = AuthentificationTools.userLogged(id, key);
 			JSONObject res = InteractionBD.executeQuery(req);
@@ -84,15 +84,16 @@ public class Authentification {
 						Timestamp currentDate = new Timestamp(System.currentTimeMillis());
 						String reqUpTime = AuthentificationTools.updateTime(id, key, currentDate.toString());
 						int resOfUpdate = InteractionBD.executeUpdate(reqUpTime);
+						
 						if (resOfUpdate == 0) {
 							return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);
 						}else {
-							return JSONTools.serviceAccepted();
+							return new JSONObject().put("etat", "log");
 						}
 					}else {
-						JSONObject resLogout = new JSONObject();
-						resLogout.put("logout", logout(id, key));
-						return JSONTools.serviceAccepted("res", resLogout);
+						JSONObject resLogout =  logout(id, key);
+						return new JSONObject().put("etat", "logoff");
+						
 					}
 				}catch(JSONException e) {
 						return JSONTools.serviceRefused("Probleme de JSON", 100);

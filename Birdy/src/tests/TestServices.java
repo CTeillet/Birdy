@@ -33,7 +33,7 @@ public class TestServices {
 //		System.out.println(Friend.getFriendList("Nono9196"));
 		//System.out.println(Friend.removeAllFriend("Nono9196"));
 		//System.out.println(Authentification.login("Co", "bonjour"));
-		//System.out.println(Authentification.isLogged("Co", "W0dpwAHKFzOgXVC50Yh2PJ7EUJQZgMmu"));
+		//System.out.println(Authentification.isLogged("Co", "IDfCX9h3P9WEKXxgXONRhbCrHmOMMNMC"));
 		//System.out.println(Authentification.logout("Co", "W0dpwAHKFzOgXVC50Yh2PJ7EUJQZgMmu"));
 		//System.out.println(Message.createMessage("Nono9196", "Yop"));
 		//System.out.println(Message.createMessage("Co", "Yop"));
@@ -41,7 +41,13 @@ public class TestServices {
 		//System.out.println(Message.createMessage("Nono9196", "Comment"));
 		//System.out.println(Message.removeAllMessageAuthor("Nono9196"));
 		//System.out.println(Message.getMessageFromAuthor("Nono9196"));
-		System.out.println(Message.getMessageWithWord("Yop"));
+		//System.out.println(Message.getMessageWithWord("Yop"));
+		
+//		String tes = "/Nono9196/kz5l21bmfzQd7ujBRt3TH9Jge2m9PUo2";
+//		String[] res = tes.split("/");
+//		System.out.printf("%d %s %s", res.length, res[1], res[2]);
+		
+		//System.out.println(Authentification.isLogged(null, "d1GDl3OR8zMnVaFTD08B6VQYwLK0ZqJb"));
 	}
 
 }

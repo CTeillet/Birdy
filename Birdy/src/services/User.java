@@ -51,10 +51,8 @@ public class User{
 	}
 	
 	public static JSONObject deleteUser(String id) {
-		//System.out.println(id);
 		if (id!=null) {
 			String req = UserTools.deleteUser(id);
-			//System.out.println(req);
 			int res = InteractionBD.executeUpdate(req);
 			if(res!=0) {
 				return tools.JSONTools.serviceAccepted();

@@ -20,12 +20,12 @@ public class Authentification extends HttpServlet {
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String param = req.getPathInfo();
-		String[] sep = param.split("/");
+		String id = req.getParameter("id");
+		String key = req.getParameter("key");
 		JSONObject retour = null;
 		
-		if(sep.length == 2) {
-			retour = services.Authentification.logout(sep[0], sep[1]);
+		if(id != null && key != null) {
+			retour = services.Authentification.logout(id, key);
 		}else {
 			retour = JSONTools.serviceRefused("Pas d'argument", -1);
 		}
@@ -36,7 +36,17 @@ public class Authentification extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String id = req.getParameter("id");
+		String mdp = req.getParameter("mdp");
+		JSONObject retour = null;
+		
+		if(id != null && mdp != null) {
+			retour = services.Authentification.login(id, mdp);
+		}else {
+			retour = JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(retour);
 	}
 }

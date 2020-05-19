@@ -59,13 +59,23 @@ public class AuthentificationTools {
 
 	public static String userLogged(String id, String key) {
 		StringBuilder res = new StringBuilder();
-		res.append("Select * From Enligne Where Enligne.identifiant='").append(id).append("' and Enligne.cle=\"").append(key).append("\";");
+		if(id!=null) {
+			res.append("Select * From Enligne Where Enligne.identifiant='").append(id).append("' and Enligne.cle=\"").append(key).append("\";");
+		}else {
+			res.append("Select * From Enligne Where Enligne.cle=\"").append(key).append("\";");
+		}
+		
 		return res.toString();
 	}
 
 	public static String updateTime(String id, String key, String heure) {
 		StringBuilder res = new StringBuilder();
-		res.append("Update Enligne Set Heure='").append(heure).append("' Where Enligne.identifiant='").append(id).append("' and Enligne.cle=\"").append(key).append("\";");
+		if(id!=null) {
+			res.append("Update Enligne Set Heure='").append(heure).append("' Where Enligne.identifiant='").append(id).append("' and Enligne.cle=\"").append(key).append("\";");
+		}else {
+			res.append("Update Enligne Set Heure='").append(heure).append("' Where Enligne.cle=\"").append(key).append("\";");
+		}
+		
 		return res.toString();
 	}
 
