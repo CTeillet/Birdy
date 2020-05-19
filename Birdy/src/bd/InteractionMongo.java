@@ -12,6 +12,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Indexes;
+import com.mongodb.client.result.UpdateResult;
+import com.mysql.cj.jdbc.result.UpdatableResultSet;
 
 import tools.JSONTools;
 
@@ -84,5 +86,18 @@ public class InteractionMongo {
 		}
 		return res;
 	}
+
+	public static JSONObject executeUpdate(Document searchMessage, Document incLike) {
+		MongoDatabase db = Database.getMongoDBConnection();
+		MongoCollection<Document> collection = db.getCollection(DBStatic.mongo_collection);
+		UpdateResult cursor = collection.updateOne(searchMessage, incLike);
+		if (cursor.getModifiedCount() == 0) {
+			return JSONTools.serviceRefused("pas de modif", 1000);
+		}else {
+			return JSONTools.serviceAccepted();
+		}
+		
+	}
+
 	
 }

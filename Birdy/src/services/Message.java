@@ -7,12 +7,6 @@ import tools.JSONTools;
 import tools.MessageTools;
 
 public class Message {
-	public static JSONObject createMessage(String id, String msg) {
-		if (id == null) {
-			return JSONTools.serviceRefused("Pas d'argument", -1);
-		}
-		return InteractionMongo.insertQuery(MessageTools.createMessage(id, msg));
-	}
 	
 	public static JSONObject removeOneMessage(String idU, String idM) {
 		if (idU == null || idM == null) {
@@ -40,6 +34,34 @@ public class Message {
 			return JSONTools.serviceRefused("Pas d'argument", -1);
 		}
 		return InteractionMongo.executeFilters(MessageTools.getAllMessageWord(word));
+	}
+	
+	public static JSONObject addLikeMessage(String idM) {
+		if(idM == null) {
+			return JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		return InteractionMongo.executeUpdate(MessageTools.searchMessage(idM), MessageTools.incLike());
+	}
+	
+	public static JSONObject addCommentMessage(String idM, String idU, String msg) {
+		if(idM==null || idU==null || msg==null || msg == "") {
+			return JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		return InteractionMongo.executeUpdate(MessageTools.searchMessage(idM), MessageTools.pushComment(idU, msg));
+	}
+	
+	public static JSONObject createMessage(String id, String msg) {
+		if (id == null) {
+			return JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		return InteractionMongo.insertQuery(MessageTools.createMessage(id, msg));
+	}
+
+	public static JSONObject getMessageByTime(String time) {
+		if(time==null || time.equals("")) {
+			return JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		return InteractionMongo.executeFilters(MessageTools.getMessageBefore(time));
 	}
 	
 	

@@ -38,7 +38,12 @@ public class Message extends HttpServlet {
 						if(type.equals("word")) {
 							retour = services.Message.getMessageWithWord(arg);
 						}else {
-							retour = JSONTools.serviceRefused("Mauvais argument", -1);
+							if(type.equals("time")) {
+								retour = services.Message.getMessageByTime(arg);
+							}else {
+								retour = JSONTools.serviceRefused("Mauvais argument", -1);
+							}
+							
 						}
 					}
 				}else {
@@ -90,14 +95,27 @@ public class Message extends HttpServlet {
 		String id = req.getParameter("id");
 		String msg = req.getParameter("msg");
 		String key = req.getParameter("key");
+		String idM = req.getParameter("idM");
 		
 		JSONObject retour = null;
-		if(id==null || msg==null || key==null) {
+		if(key==null) {
 			retour = JSONTools.serviceRefused("Pas d'argument", -1);
 		}else {
 			try {
 				if (Authentification.isLogged(id, key).getString("etat") == "log") {
-					retour = services.Message.createMessage(id, msg);
+					if((id!=null) && (msg!=null) && (idM!=null)) {
+						retour = services.Message.addCommentMessage(idM, id, msg);
+					}else {
+						if((id!=null) && (msg!=null) && (idM==null)) {
+							retour = services.Message.createMessage(id, msg);
+						}else {
+							if(idM!=null) {
+								retour = services.Message.addLikeMessage(idM);
+							}else {
+								retour = JSONTools.serviceRefused("Pas d'argument", -1);
+							}
+						}
+					}
 				}else {
 					retour = JSONTools.serviceRefused("Utilisateur déconnecté", -1);
 				}

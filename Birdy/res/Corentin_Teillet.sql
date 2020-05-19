@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 17 mai 2020 à 20:52
+-- Généré le :  mar. 19 mai 2020 à 15:32
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-	
+
 --
 -- Base de données :  `corentin_teillet`
 --
@@ -30,10 +30,11 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `enligne`;
 CREATE TABLE IF NOT EXISTS `enligne` (
-  `Id` varchar(15) NOT NULL,
-  `Cle` varchar(32) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Identifiant` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Cle` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Heure` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Identifiant`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -75,14 +76,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contraintes pour la table `enligne`
 --
 ALTER TABLE `enligne`
-  ADD CONSTRAINT `FK_ID` FOREIGN KEY (`Id`) REFERENCES `utilisateur` (`Identifiant`);
+  ADD CONSTRAINT `IDENTIFIANT_FK` FOREIGN KEY (`Identifiant`) REFERENCES `utilisateur` (`Identifiant`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `friend`
 --
 ALTER TABLE `friend`
-  ADD CONSTRAINT `UTILISATEUR1_FK` FOREIGN KEY (`Utilisateur1`) REFERENCES `utilisateur` (`Identifiant`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `UTILISATEUR2_FK` FOREIGN KEY (`Utilisateur2`) REFERENCES `utilisateur` (`Identifiant`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `UTILISATEUR1_FK` FOREIGN KEY (`Utilisateur1`) REFERENCES `utilisateur` (`Identifiant`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `UTILISATEUR2_FK` FOREIGN KEY (`Utilisateur2`) REFERENCES `utilisateur` (`Identifiant`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
