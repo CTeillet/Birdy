@@ -47,7 +47,7 @@ public class InteractionBD {
 			return res;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-
+			//e.printStackTrace();
 			return 0;
 		}
 		

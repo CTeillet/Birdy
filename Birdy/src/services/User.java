@@ -18,8 +18,8 @@ public class User{
 			return tools.JSONTools.serviceRefused("Mail non defini", -1);
 		}
 		String req = tools.UserTools.createUsers(id, mdp, mail, nom, prenom, dateNaissance);
-		//System.out.println(req);
-		if(bd.InteractionBD.executeUpdate(req)!=0) {
+		int res = bd.InteractionBD.executeUpdate(req);
+		if(res!=0) {
 			return tools.JSONTools.serviceAccepted();
 		}else {
 			return tools.JSONTools.serviceRefused("Probleme de SQL", 1000);

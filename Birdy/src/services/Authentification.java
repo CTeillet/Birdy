@@ -73,7 +73,7 @@ public class Authentification {
 		}else {
 			String req = AuthentificationTools.userLogged(id, key);
 			JSONObject res = InteractionBD.executeQuery(req);
-			if(res.length()==1) {
+			if(res!= null && res.length()==1) {
 				try {
 					JSONObject ttReq = res.getJSONObject("0");
 					String resH = (String) ttReq.get("Heure");

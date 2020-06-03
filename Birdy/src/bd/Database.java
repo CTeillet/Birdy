@@ -33,7 +33,7 @@ public class Database {
 	}
 	
 	public static Connection getMySQLConnection() throws SQLException {
-		// si on n'utilise pas le pooling 
+		// si on n'utilise pas le pooling
 		if(!DBStatic.pooling) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");

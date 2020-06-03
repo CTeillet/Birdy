@@ -2,7 +2,7 @@
 <Context>
 	<Resource name="jdbc/db" type="javax.sql.DataSource" 
 	maxActive="10" maxIdle="30"  maxWait="10000"
-	url="jdbc:mysql://localhost/Corentin_Teillet"
+	url="jdbc:mysql://localhost/corentin_teillet"
 	driverClassName="com.mysql.cj.jdbc.Driver"
 	username="root" password="" />
 </Context>

@@ -8,6 +8,13 @@ import tools.MessageTools;
 
 public class Message {
 	
+	public static JSONObject createMessage(String id, String msg) {
+		if (id == null || msg == null ) {
+			return JSONTools.serviceRefused("Pas d'argument", -1);
+		}
+		return InteractionMongo.insertQuery(MessageTools.createMessage(id, msg));
+	}
+	
 	public static JSONObject removeOneMessage(String idU, String idM) {
 		if (idU == null || idM == null) {
 			return JSONTools.serviceRefused("Pas d'argument", -1);
@@ -48,13 +55,6 @@ public class Message {
 			return JSONTools.serviceRefused("Pas d'argument", -1);
 		}
 		return InteractionMongo.executeUpdate(MessageTools.searchMessage(idM), MessageTools.pushComment(idU, msg));
-	}
-	
-	public static JSONObject createMessage(String id, String msg) {
-		if (id == null) {
-			return JSONTools.serviceRefused("Pas d'argument", -1);
-		}
-		return InteractionMongo.insertQuery(MessageTools.createMessage(id, msg));
 	}
 
 	public static JSONObject getMessageByTime(String time) {
